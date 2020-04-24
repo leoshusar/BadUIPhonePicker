@@ -1,0 +1,63 @@
+﻿<Window x:Class="BadUIPhonePicker.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:local="clr-namespace:BadUIPhonePicker"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        mc:Ignorable="d"
+        Title="Phone picker" Height="160" Width="400">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Text="Enter your phone number" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Your phone number:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Modifier number:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Operator:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding PhoneNumber}" IsReadOnly="True" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Modifier}" IsReadOnly="True" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+        <ComboBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectedIndex="{Binding OperatorIndex}">
+            <ComboBoxItem Content="Plus" />
+            <ComboBoxItem Content="Minus" />
+            <ComboBoxItem Content="Multiply" />
+            <ComboBoxItem Content="Divide" />
+            <ComboBoxItem Content="Power of N" />
+            <ComboBoxItem Content="Nth root" />
+            <ComboBoxItem Content="Log N" />
+            <ComboBoxItem Content="Bitwise AND" />
+            <ComboBoxItem Content="Bitsise OR" />
+            <ComboBoxItem Content="Bitwise XOR" />
+            <ComboBoxItem Content="Bitwise shift left" />
+            <ComboBoxItem Content="Bitwise shift right" />
+            <ComboBoxItem Content="Factorial (beware of this, may crash)" />
+            <ComboBoxItem Content="Absolute" />
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding OperatorChangedCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ComboBox>
+    </Grid>
+</Window>
